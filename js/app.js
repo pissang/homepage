@@ -124,6 +124,14 @@
         ]
         // -----------------------------------------------------------
     });
-
+    
+    app.animation("tlunit-animation-enter", function() {
+        return {
+            setup : function(element) {
+                // Random delay
+                $(element).css('transition-delay', Math.random()/2 +'s');
+            },
+        }
+    })
     
 })();
