@@ -1,6 +1,6 @@
 (function() {
 
-    var WP_ROOT = 'http://localhost/wordpress/';
+    var WP_ROOT = '../wordpress/';
 
     var app = angular.module('homepage', ['homepage.background'])
 
