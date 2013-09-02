@@ -1,8 +1,102 @@
 (function() {
 
+    var WP_ROOT = 'http://localhost/wordpress/';
+
     var app = angular.module('homepage', ['homepage.background'])
 
-    app.controller("timeline", function($scope, $http){
+    app.config(['$routeProvider', function($routeProvider) {
+        $routeProvider
+            .when("/home", {
+                templateUrl : 'partials/home.html'
+            })
+            .when('/portfolio', {
+                templateUrl : 'partials/portfolio.html',
+                controller : 'portfolio'
+            })
+            .when('/posts', {
+                templateUrl : 'partials/posts.html',
+                controller : 'posts'
+            })
+            .when('/resume', {
+                templateUrl : 'partials/resume.html'
+            })
+            .when('/about', {
+                templateUrl : 'partials/about.html'
+            })
+    }]);
+
+    // function decodeHTML(value) {
+    //     var div = document.createElement("div");
+    //     div.innerHTML = value;
+    //     return div.innerHTML;
+    // }
+
+    app.controller("posts", function($scope, $http) {
+        // Fetch posts
+        $http({
+            method : 'GET',
+            url : WP_ROOT + '?json=get_recent_posts'
+        })
+        .success(function(data) {
+            // Column right in timeline
+            $scope.posts = []
+
+            _.each(data.posts, function(post) {
+                var firstParagraph = post.content.match(/<p>(.*?)<\/p>/);
+                if (firstParagraph) {
+                    firstParagraph = firstParagraph[1];
+                }
+                $scope.posts.push({
+                    title : post.title,
+                    description : firstParagraph,
+                    date : post.date
+                });
+            });
+        });
+
+        // Fetch categories
+        $http({
+            method : 'GET',
+            url : WP_ROOT + '?json=get_category_index'
+        })
+        .success(function(data) {
+            $scope.categories = [];
+
+            _.each(data.categories, function(category) {
+                $scope.categories.push({
+                    id : category.id,
+                    title : category.title,
+                    postCount : category.post_count,
+                })
+            });
+        });
+
+        var MONTH = ['', 'Jan.', 'Feb.', 'Mar.', 'Apr.', 'May', 'Jun.', 'Jul.', 'Aug.', 'Sep.', 'Oct.', 'Nov.', 'Dec.']
+        // Fetch dates
+        $http({
+            method : 'GET',
+            url : WP_ROOT + '?json=get_date_index',
+        })
+        .success(function(data) {
+            $scope.dates = [];
+            _.each(data.tree, function(year, yearNumber) {
+                var months = [];
+                $scope.dates.push({
+                    months : months,
+                    year : yearNumber
+                });
+
+                _.each(year, function(count, month) {
+                    months.push({
+                        month : MONTH[parseInt(month)],
+                        count : count
+                    })
+                })
+            })
+        });
+    });
+
+    app.controller("portfolio", function($scope, $http) {
         // -----------------------------------------------------------
         // THESE DATA WILL BE FETCHED WITH AJAX FROM WORDPRESS!!!
         // Column left in timeline
@@ -34,5 +128,5 @@
         // -----------------------------------------------------------
     });
 
-
+    
 })();

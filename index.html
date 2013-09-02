@@ -8,34 +8,17 @@
     <script type="text/javascript" src="lib/less.js"></script>
 </head>
 <body>
-    <canvas id="BackgroundCanvas"></canvas>
+    <div id="Background">
+        <canvas id="BackgroundCanvas"></canvas>
+    </div>
     <div id="App">
-        <div id="Header">
-            <div class="navigation">
-                <ul>
-                    <li>Home</li>
-                    <li>Portfolio</li>
-                    <li>Blogs</li>
-                    <li>Resume</li>
-                    <li>About</li>
-                </ul>
-            </div>
+        <div ng-include="'partials/header.html'">
         </div>
-        <div id="Timeline" ng-controller="timeline">
-            <div class="left">
-                <div class="timeline_column" ng-repeat="tlUnit in tlColumnLeft">
-                    <div ng-include="'partials/tl_unit.html'"></div>
-                </div>
-            </div>
-            <div class="right">
-                <div class="timeline_column" ng-repeat="tlUnit in tlColumnRight">
-                    <div ng-include="'partials/tl_unit.html'"></div>
-                </div>
-            </div>
-        </div>
+        <div ng-view></div>
     </div>
     
     <script type="text/javascript" src="lib/angular.js"></script>
+    <script type="text/javascript" src="lib/underscore.js"></script>
     <script type="text/javascript" src="lib/emage.js"></script>
 
     <script type="text/javascript" src="js/background.js"></script>

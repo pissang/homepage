@@ -1,0 +1,18 @@
+<!--
+    Portfolio part
+-->
+<div id="Portfolio" class="timeline" >
+    <div class="left">
+        <div class="timeline_column" ng-repeat="tlUnit in tlColumnLeft">
+            <div ng-include="'partials/tl_unit.html'"></div>
+        </div>
+    </div>
+    <div class="timeline_axis">
+    </div>
+    <div class="right">
+        <div class="timeline_column" ng-repeat="tlUnit in tlColumnRight">
+            <div ng-include="'partials/tl_unit.html'"></div>
+        </div>
+    </div>
+    <div style="clear:both"></div>
+</div>

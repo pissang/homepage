@@ -1,14 +1,19 @@
 li{
     list-style: none;
 }
-#BackgroundCanvas{
+#Background{
     position: fixed;
     left:0px;
     right:0px;
     top:0px;
-    bottom:0px;
-
-    z-index: -1;
+    bottom: 0;
+    z-index: -10;
+}
+#BackgroundCanvas{
+    position: absolute;
+    left:0px;
+    right:0px;
+    top:0px;
 }
 
 body{
@@ -23,12 +28,14 @@ body{
 
 #Header{
     margin-top: 20px;
-    
+
     .navigation {
+
         background-color: #2b2938;
         height:30px;
         border-radius: 5px;
         padding: 8px 0px;
+        font-size: 14px;
 
         ul {
             margin:0px;
@@ -36,46 +43,192 @@ body{
         }
         li {
             float:left;
-            color:#959ab4;
             font-weight: bold;
             padding:0px 10px;
             border-right: 2px solid #31333e;
+            a{
+                color:#959ab4;
+                cursor:pointer;
+                padding:4px;
+                text-decoration: none;
+
+                &:hover{
+                    background-color: #f1ecf6;
+                    border-radius:4px;
+                }
+            }
         }
+
     }
 }
-#Timeline{
+.timeline{
+    
+    position: relative;
+
     .left{
         float: left;
-        width: 50%;
+        margin-top: 20px;
+
+        .tlunit_link{
+            right:-33px;
+        }
     }
     .right{
         float: left;
-        width: 50%;
-    }
 
-    .timeline_unit{
-        border-radius:10px;
+        .tlunit_link{
+            left:-33px;
+        }
+    }
+    .timeline_axis{
+        position: absolute;
+        bottom: 0px;
+        top:20px;
+        left:50%;
+        width:2px;
+
+        margin-left: -1px;
+
+        border-radius: 2px;
         background-color: white;
-        margin:30px;
+    }
+    .timeline_unit{
+        border-radius: 10px;
+        background-color: white;
+        margin: 30px;
+        // box-shadow: 0px 0px 2px #777;
     }
 
+    .tlunit_header{
+        position: relative;
+    }
     .tlunit_title{
-        padding:10px;
-        color:#555555;
-        margin:5px;
+        padding: 10px;
+        color: #555555;
+        margin: 5px;
         font-weight: bold;
     }
 
+    .tlunit_link{
+        position: absolute;
+        top:10px;
+        width:36px;
+    }
+    .tlunit_pin{
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        border-radius: 3px;
+
+        background-color: white;
+
+        &.pin_left{
+            left: 0px;
+        }
+
+        &.pin_right{
+            right: 0px;
+        }
+    }
+    .tlunit_line{
+        float:left;
+        height:2px;
+        background-color:white;
+        width:100%;
+        margin-top:2px;
+    }
+
     .tlunit_description{
-        color:#B8B8B8;
+        color: #B8B8B8;
         font-size: 14px;
         padding:0px 20px 20px 20px;
         line-height: 18px;
         margin-top: 0px;
         box-sizing:border-box;
+        margin:0px;
+
+        a {
+            color: #B8B8B8;
+        }
     }
 
     .tlunit_footer{
+        height: 25px;
+        background-color: #f1ecf6;
 
+        color:#8b83a8;
+        font-size: 12px;
+
+        border-radius: 0px 0px 10px 10px;
+        padding:5px 0px;
+
+        position: relative;
+        overflow: hidden;
     }
+    
+    .tlunit_shadow{
+        height:1px;
+        box-shadow: 0px 1px 5px #C0C0C0;
+        top:-1px;
+        left:0px;
+        right: 0px;
+        position: absolute;    
+    }
+
+    .tlunit_date {
+        height: 25px;
+        line-height: 25px;
+
+        margin-right: 20px;
+        float:right;
+    }
+}
+
+#Portfolio{
+
+    .left{
+        width:50%;
+    }
+
+    .right{
+        width: 50%;
+    }
+
+    .timeline_axis{
+        left:50%
+    }
+}
+
+#Blog{
+    .left{
+        width:20%;
+
+        h5{
+            color:white;
+            font-weight: bold;
+        }
+
+        ul{
+            padding:10px;
+        }
+
+        padding-left: 20px;
+        box-sizing:border-box;
+    }
+    .right{
+        width:80%;
+    }
+    .timeline_axis{
+        left:20%;
+    }
+
+    .categories,
+    .dates{
+        a {
+            color:white;
+            text-decoration: none;
+            font-size: 14px;            
+        }
+    }
+
 }

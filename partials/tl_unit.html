@@ -1,16 +1,26 @@
 <!--
-    Time line unit part
+    Timeline unit part
 -->
 <div class="timeline_unit">
     <div class="tlunit_header">
         <h5 class="tlunit_title">{{ tlUnit.title }}</h5>
+
+        <!-- Links to the timeline -->
+        <div class="tlunit_link">
+            <div class="tlunit_pin pin_left"></div>
+            <div class="tlunit_line"></div>
+            <div class="tlunit_pin pin_right"></div>
+        </div>
+
     </div>
     <div class="tlunit_body">
-        <p class="tlunit_description">
-            {{ tlUnit.description }}
-        </p>
+        <div class="tlunit_description" ng-bind-html-unsafe="tlUnit.description">
+        </div>
     </div>
     <div class="tlunit_footer">
-        
+        <div class="tlunit_shadow"></div>
+        <div class="tlunit_date">
+            {{tlUnit.date}}
+        </div>
     </div>
 </div>
