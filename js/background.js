@@ -26,7 +26,7 @@
             // Parallax scroll
             var background = document.getElementById("Background");
             window.onscroll = function() {
-                canvas.style.top = (-document.body.scrollTop * 0.1) + 'px';
+                canvas.style.top = (-document.body.scrollTop * 0.07) + 'px';
             }
         });
 })();

@@ -3,15 +3,19 @@
 -->
 <div id="Portfolio" class="timeline" >
     <div class="left">
-        <div class="timeline_column" ng-repeat="tlUnit in tlColumnLeft">
-            <div ng-include="'partials/tl_unit.html'"></div>
+        <div class="timeline-column">
+            <div ng-repeat="tlUnit in tlColumnLeft"
+                 ng-animate="'tlunit-animation'" 
+                 ng-include="'partials/tl_unit.html'"></div>
         </div>
     </div>
-    <div class="timeline_axis">
+    <div class="timeline-axis">
     </div>
     <div class="right">
-        <div class="timeline_column" ng-repeat="tlUnit in tlColumnRight">
-            <div ng-include="'partials/tl_unit.html'"></div>
+        <div class="timeline-column">
+            <div ng-repeat="tlUnit in tlColumnRight"
+                 ng-animate="'tlunit-animation'" 
+                 ng-include="'partials/tl_unit.html'"></div>
         </div>
     </div>
     <div style="clear:both"></div>

@@ -17,6 +17,9 @@
                 templateUrl : 'partials/posts.html',
                 controller : 'posts'
             })
+            .when('/post', {
+                templateUrl : 'partials/post.html'
+            })
             .when('/resume', {
                 templateUrl : 'partials/resume.html'
             })
@@ -24,12 +27,6 @@
                 templateUrl : 'partials/about.html'
             })
     }]);
-
-    // function decodeHTML(value) {
-    //     var div = document.createElement("div");
-    //     div.innerHTML = value;
-    //     return div.innerHTML;
-    // }
 
     app.controller("posts", function($scope, $http) {
         // Fetch posts

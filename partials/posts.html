@@ -4,26 +4,30 @@
 <div id="Blog" class="timeline">
     <div class="left">
         <h5>Categories</h5>
-        <ul class="categories" ng-repeat="category in categories">
-            <li>
+        <ul class="categories">
+            <li ng-repeat="category in categories">
                 <a href="">{{category.title}}({{category.postCount}})</a>
             </li>
         </ul>
         <h5>Archives</h5>
-        <ul class="dates" ng-repeat="year in dates">
-            <li>
+        <ul class="dates">
+            <li ng-repeat="year in dates">
                 <a href="">{{year.year}}</a>
-                <ul ng-repeat="month in year.months">
-                    <a href="">{{month.month}}({{month.count}})</a>
+                <ul>
+                    <li ng-repeat="month in year.months">
+                        <a href="">{{month.month}}({{month.count}})</a>
+                    </li>
                 </ul>
             </li>
         </ul>
     </div>
-    <div class="timeline_axis">
+    <div class="timeline-axis">
     </div>
     <div class="right">
-        <div class="timeline_column" ng-repeat="tlUnit in posts">
-            <div ng-include="'partials/tl_unit.html'"></div>
+        <div class="timeline-column">
+            <div ng-repeat="tlUnit in posts"
+                ng-animate="'tlunit-animation'" 
+                ng-include="'partials/tl_unit.html'"></div>
         </div>
     </div>
     <div style="clear:both"></div>
