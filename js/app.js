@@ -125,7 +125,7 @@
         // -----------------------------------------------------------
     });
     
-    app.animation("tlunit-animation-enter", function() {
+    app.animation("tlunit-fadein-enter", function() {
         return {
             setup : function(element) {
                 // Random delay

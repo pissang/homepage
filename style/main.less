@@ -103,6 +103,7 @@ body{
     .tlunit-header{
         position: relative;
     }
+
     .tlunit-title{
         padding: 10px;
         color: #555555;
@@ -157,9 +158,6 @@ body{
         height: 25px;
         background-color: #f1ecf6;
 
-        color:#8b83a8;
-        font-size: 12px;
-
         border-radius: 0px 0px 10px 10px;
         padding:5px 0px;
 
@@ -180,14 +178,32 @@ body{
         height: 25px;
         line-height: 25px;
 
-        margin-right: 20px;
-        float:right;
+        top:5px;
+        right: 20px;
+        position: absolute;
+
+        color:#8b83a8;
+        font-size: 12px;
+    }
+
+    .tlunit-viewmore{
+        background-color: #88a4ff;
+        color:white;
+        font-size: 12px;
+        border-radius: 4px;
+
+        position: absolute;
+        right:20px;
+        top:5px;
+        padding: 5px;
+
+        cursor: pointer;
     }
 }
 
 // Animation
-.tlunit-animation-enter,
-.tlunit-animation-leave{
+.tlunit-fadein-enter,
+.tlunit-fadein-leave{
     -webkit-transition:1s cubic-bezier(0.23, 1, 0.32, 1) all;
        -moz-transition:1s cubic-bezier(0.23, 1, 0.32, 1) all;
          -o-transition:1s cubic-bezier(0.23, 1, 0.32, 1) all;
@@ -201,7 +217,7 @@ body{
 
     opacity: 0;
 
-    &.tlunit-animation-enter-active{
+    &.tlunit-fadein-enter-active{
         opacity: 1.0;
 
         -webkit-transform: translate(0, 0px);
