@@ -18,12 +18,11 @@
 
     </div>
     <div class="tlunit-body">
-        <div class="tlunit-description" ng-bind-html-unsafe="tlUnit.description">
+        <div class="tlunit-excerpt" ng-bind-html-unsafe="tlUnit.excerpt">
         </div>
     </div>
     <div class="tlunit-footer">
         <div class="tlunit-shadow"></div>
-
-        <div class="tlunit-viewmore">View More</div>
+        <a class="tlunit-viewmore" href="#/post/{{tlUnit.id}}">View More</a>
     </div>
 </div>

@@ -13,12 +13,13 @@
                 templateUrl : 'partials/portfolio.html',
                 controller : 'portfolio'
             })
+            .when('/post/:id', {
+                templateUrl : 'partials/post.html',
+                controller : 'post'
+            })
             .when('/posts', {
                 templateUrl : 'partials/posts.html',
                 controller : 'posts'
-            })
-            .when('/post', {
-                templateUrl : 'partials/post.html'
             })
             .when('/resume', {
                 templateUrl : 'partials/resume.html'
@@ -32,7 +33,7 @@
         // Fetch posts
         $http({
             method : 'GET',
-            url : WP_ROOT + '?json=get_recent_posts'
+            url : WP_ROOT + '?json=get_posts&page=1&count=10'
         })
         .success(function(data) {
             // Column right in timeline
@@ -45,8 +46,9 @@
                 }
                 $scope.posts.push({
                     title : post.title,
-                    description : firstParagraph,
-                    date : post.date
+                    excerpt : firstParagraph,
+                    date : post.date,
+                    id : post.id
                 });
             });
         });
@@ -93,6 +95,24 @@
         });
     });
 
+    app.controller('post', function($scope, $http, $routeParams) {
+        var id = $routeParams.id;
+
+        $http({
+            method : 'GET',
+            url : WP_ROOT + '?json=get_post&post_id=' + id
+        })
+        .success(function(data) {
+            var post = data.post;
+            $scope.post = {
+                title : post.title,
+                date : post.date,
+                modified : post.modified,
+                content : post.content
+            }
+        });
+    });
+
     app.controller("portfolio", function($scope, $http) {
         // -----------------------------------------------------------
         // THESE DATA WILL BE FETCHED WITH AJAX FROM WORDPRESS!!!
@@ -101,17 +121,17 @@
             {
                 title : 'Polyzoom',
                 date : '2009-08-07',
-                description : 'This is the project for Introduction to Human-Computer Interaction course.'
+                excerpt : 'This is the project for Introduction to Human-Computer Interaction course.'
             },
             {
                 title : 'An Interactive Web White Board Based On Feature Assisted Sketching',
                 date : '2009-08-07',
-                description : 'Inspired by the SIGGRAPH 2011 paper ShadowDraw: Real-Time User Guidance for Freehand Drawing, we presented an Interactive Web White Board, iPaper, based on Browser-Server Architecture, using Python.'
+                excerpt : 'Inspired by the SIGGRAPH 2011 paper ShadowDraw: Real-Time User Guidance for Freehand Drawing, we presented an Interactive Web White Board, iPaper, based on Browser-Server Architecture, using Python.'
             },
             {
                 title : '“THE ONE” Android App Design',
                 date : '2009-08-07',
-                description : 'We started this project for our own interest. The idea just came out in our mind one day.'
+                excerpt : 'We started this project for our own interest. The idea just came out in our mind one day.'
             }
         ]
         // Column right in timeline
@@ -119,7 +139,7 @@
             {
                 title : 'Storyboard',
                 date : '2009-08-07',
-                description : 'This is the project for Programming Interactive System course. We implemented a storyboarding tool using Javascript, HTML, CSS. I implemented two modes, linear mode and tree mode to represent the structure of storyboard.'
+                excerpt : 'This is the project for Programming Interactive System course. We implemented a storyboarding tool using Javascript, HTML, CSS. I implemented two modes, linear mode and tree mode to represent the structure of storyboard.'
             }
         ]
         // -----------------------------------------------------------
